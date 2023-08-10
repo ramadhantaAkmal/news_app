@@ -1,11 +1,7 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:news_app/features/app/domain/entities/article.dart';
 
-part 'article.freezed.dart';
-part 'article.g.dart';
-
-@freezed
-class ArticleModel with _$ArticleModel {
-  factory ArticleModel({
+class ArticleModel extends ArticleEntity {
+  const ArticleModel({
     int? id,
     String? author,
     String? title,
@@ -14,8 +10,17 @@ class ArticleModel with _$ArticleModel {
     String? urlToImage,
     String? publishedAt,
     String? content,
-  }) = _ArticleModel;
+  });
 
-  factory ArticleModel.fromJson(Map<String, dynamic> json) =>
-      _$ArticleModelFromJson(json);
+  factory ArticleModel.fromJson(Map<String, dynamic> map) {
+    return ArticleModel(
+      author: map['author'] ?? "",
+      title: map['title'] ?? "",
+      description: map['description'] ?? "",
+      url: map['url'] ?? "",
+      urlToImage: map['urlToImage'] ?? "",
+      publishedAt: map['publishedAt'] ?? "",
+      content: map['content'] ?? "",
+    );
+  }
 }
