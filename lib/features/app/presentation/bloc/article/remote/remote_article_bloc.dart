@@ -9,7 +9,8 @@ class RemoteArticlesBloc
     extends Bloc<RemoteArticlesEvent, RemoteArticlesState> {
   final GetArticleUseCase _getArticleUseCase;
 
-  RemoteArticlesBloc(this._getArticleUseCase) : super(RemoteArticlesLoading()) {
+  RemoteArticlesBloc(this._getArticleUseCase)
+      : super(const RemoteArticlesLoading()) {
     on<GetArticles>(onGetArticles);
   }
 
@@ -20,8 +21,9 @@ class RemoteArticlesBloc
     if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
       emit(RemoteArticlesDone(dataState.data!));
     }
+
     if (dataState is DataFailed) {
-      emit(RemoteArticleError(dataState.error!));
+      emit(RemoteArticlesError(dataState.error!));
     }
   }
 }

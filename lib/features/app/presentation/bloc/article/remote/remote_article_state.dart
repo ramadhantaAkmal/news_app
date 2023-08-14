@@ -21,6 +21,6 @@ class RemoteArticlesDone extends RemoteArticlesState {
       : super(articles: article);
 }
 
-class RemoteArticleError extends RemoteArticlesState {
-  const RemoteArticleError(DioException error) : super(error: error);
+class RemoteArticlesError extends RemoteArticlesState {
+  const RemoteArticlesError(DioException error) : super(error: error);
 }
