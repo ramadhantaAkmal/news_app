@@ -6,9 +6,14 @@ import 'package:news_app/features/app/domain/repository/article_repository.dart'
 import 'package:news_app/features/app/domain/usecases/get_article.dart';
 import 'package:news_app/features/app/presentation/bloc/article/remote/remote_article_bloc.dart';
 
+import 'features/app/data/data_sources/local/app_database.dart';
+
 final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
+  final database =
+      await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+  sl.registerSingleton<AppDatabase>(database);
   // Dio
   sl.registerSingleton<Dio>(Dio());
 
