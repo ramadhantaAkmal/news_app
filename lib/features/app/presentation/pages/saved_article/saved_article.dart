@@ -40,7 +40,7 @@ class SavedArticles extends HookWidget {
 
   Widget _buildBody() {
     return BlocBuilder<LocalArticleBloc, LocalArticleState>(
-      builder: (context, state) {
+      builder: (_, state) {
         if (state is LocalArticlesLoading) {
           return const Center(child: CupertinoActivityIndicator());
         } else if (state is LocalArticlesDone) {
